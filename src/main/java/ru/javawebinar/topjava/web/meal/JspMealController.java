@@ -42,18 +42,15 @@ public class JspMealController extends AbstractMealController {
 
     @GetMapping(value="/update")
     public String update(HttpServletRequest request, Model model) {
-        Integer mealId = Integer.parseInt(request.getParameter("id"));
+        int mealId = Integer.parseInt(request.getParameter("id"));
         Meal meal = super.get(mealId);
-        if (meal == null) {
-            return "redirect:/meals";
-        }
         model.addAttribute("meal", meal);
         return "mealForm";
     }
 
     @GetMapping(value = "/delete")
     public String delete(HttpServletRequest request) {
-        Integer mealId = Integer.parseInt(request.getParameter("id"));
+        int mealId = Integer.parseInt(request.getParameter("id"));
         super.delete(mealId);
         return "redirect:/meals";
     }
